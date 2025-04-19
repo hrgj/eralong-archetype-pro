@@ -4,18 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <fileSets>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>.idea/inspectionProfiles</directory>
-      <includes>
-        <include>**/*.xml</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>.idea/mybatisx</directory>
-      <includes>
-        <include>**/*.xml</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
       <directory>.idea</directory>
       <includes>
         <include>**/*.xml</include>
@@ -25,6 +13,17 @@
       <directory>.idea</directory>
       <includes>
         <include>**/*.gitignore</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <includes>
+        <include>settings.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <includes>
+        <include>.cnb.yml</include>
+        <include>.gitignore</include>
       </includes>
     </fileSet>
   </fileSets>
@@ -51,6 +50,18 @@
     </module>
     <module id="${rootArtifactId}-dao" dir="__rootArtifactId__-dao" name="${rootArtifactId}-dao">
       <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
         <fileSet encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
@@ -65,7 +76,16 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-manager" dir="__rootArtifactId__-manager" name="${rootArtifactId}-manager" />
+    <module id="${rootArtifactId}-manager" dir="__rootArtifactId__-manager" name="${rootArtifactId}-manager">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
     <module id="${rootArtifactId}-web" dir="__rootArtifactId__-web" name="${rootArtifactId}-web">
       <fileSets>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
@@ -110,6 +130,15 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="${rootArtifactId}-model" dir="__rootArtifactId__-model" name="${rootArtifactId}-model" />
+    <module id="${rootArtifactId}-model" dir="__rootArtifactId__-model" name="${rootArtifactId}-model">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
   </modules>
 </archetype-descriptor>

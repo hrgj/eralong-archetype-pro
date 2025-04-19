@@ -7,6 +7,7 @@ import ${package.Parent}.service.service.${table.serviceName};
 import ${package.Parent}.model.request.${entity}Request;
 import ${package.Parent}.model.vo.${entity}VO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.ronghuiwl.base.page.BasePageVO;
@@ -63,9 +64,9 @@ public class ${table.controllerName} {
         return ${table.entityPath}Service.get${entity}ById(request);
     }
 
-    @PostMapping("/list")
+    @PostMapping("/page")
     @Operation(summary = "分页查询${table.comment!}")
-    public BasePageVO<${entity}VO> page(@RequestBody UploadRecordsRequest request) {
+    public BasePageVO<${entity}VO> page(@RequestBody ${entity}Request request) {
         return ${table.entityPath}Service.page(request);
     }
 }

@@ -1,5 +1,6 @@
 package ${package.ServiceImpl};
 
+import ${package.Parent}.dao.mapper.${entity}Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ${package.Parent}.dao.entity.${entity};

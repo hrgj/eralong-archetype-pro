@@ -4,6 +4,7 @@
 package ${package}.${parentArtifactId}.web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +19,7 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @Slf4j
+@EnableDubbo
 @EnableDiscoveryClient
 @MapperScan("${package}.${parentArtifactId}.dao.mapper")
 @ComponentScan("${package}.${parentArtifactId}")
@@ -31,7 +33,7 @@ public class WebApplication implements ApplicationListener<ApplicationReadyEvent
 
     public static void main(String[] args) {
         SpringApplication.run(WebApplication.class, args);
-        System.out.println("swagger-ui rul: " + "http://localhost:8083/${parentArtifactId}/swagger-ui/index.html");
+        System.out.println("swagger-ui rul: " + "http://localhost:8083/tms/swagger-ui/index.html");
     }
 
     @Override

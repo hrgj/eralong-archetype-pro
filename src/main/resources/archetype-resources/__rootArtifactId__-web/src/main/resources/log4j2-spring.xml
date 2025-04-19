@@ -1,0 +1,72 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN"
+               monitorInterval="30"
+               shutdownTimeout="30"
+               name="AsyncLogConfig">
+
+    <!-- 环境变量配置（带默认值） -->
+    <Properties>
+        <Property name="rootLevel">${symbol_dollar}{sys:log.root.level:-INFO}</Property>
+        <Property name="consoleLevel">${symbol_dollar}{sys:log.console.level:-INFO}</Property>
+        <Property name="logDir">${symbol_dollar}{sys:log.dir:-./logs}</Property>
+        <!-- 应用名称 -->
+        <Property name="appName">${symbol_dollar}{sys:app.name:-appname}</Property>
+        <!-- Disruptor调优参数 -->
+        <Property name="async.ringBufferSize">65536</Property>
+
+        <!-- 日志格式 -->
+        <Property name="log.pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %X{traceId:-N/A} %-5p %c{1.} [%M:%L] - %m%n
+        </Property>
+    </Properties>
+
+    <!-- 增加异步日志线程工厂配置 -->
+    <AsyncLoggerConfig>
+        <ThreadFactory class="org.apache.logging.log4j.core.async.AsyncLoggerConfigDefaultThreadFactory"/>
+    </AsyncLoggerConfig>
+
+    <Appenders>
+        <!-- 异步控制台Appender -->
+        <Console name="SYNC_CONSOLE" target="SYSTEM_OUT">
+            <!-- 使用Disruptor的批量提交机制 -->
+            <PatternLayout pattern="${symbol_dollar}{log.pattern}"/>
+            <ThresholdFilter level="${symbol_dollar}{consoleLevel}" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+
+        <!-- 异步滚动文件Appender -->
+        <RollingRandomAccessFile name="ASYNC_FILE"
+                                 fileName="${symbol_dollar}{logDir}/${symbol_dollar}{appName}.log"
+                                 filePattern="${symbol_dollar}{logDir}/${symbol_dollar}{appName}-%d{yyyy-MM-dd}-%i.log.gz"
+                                 immediateFlush="false"
+                                 bufferSize="4096"
+                                 filePermissions="rw-rw-r--">
+            <PatternLayout pattern="${symbol_dollar}{log.pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="6" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="1GB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100" fileIndex="max" compressionLevel="9">
+                <Delete basePath="${symbol_dollar}{logDir}" maxDepth="2">
+                    <IfFileName glob="${symbol_dollar}{appName}-*.log.gz"/>
+                    <IfLastModified age="14d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 同步日志记录器（用于特殊需要低延迟的组件） -->
+        <Logger name="com.zaxxer.hikari" level="WARN" additivity="false">
+            <AppenderRef ref="ASYNC_FILE"/>
+        </Logger>
+
+        <!-- 异步根日志器 -->
+        <AsyncRoot level="${symbol_dollar}{rootLevel}"
+                   includeLocation="true">
+            <AppenderRef ref="SYNC_CONSOLE"/>
+            <AppenderRef ref="ASYNC_FILE"/>
+        </AsyncRoot>
+    </Loggers>
+</Configuration>

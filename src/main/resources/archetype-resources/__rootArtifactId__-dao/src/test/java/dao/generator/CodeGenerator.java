@@ -4,22 +4,23 @@
 package ${package}.dao.generator;
 
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.builder.CustomFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.baomidou.mybatisplus.generator.fill.Property;
 
-import java.lang.module.Configuration;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class CodeGenerator {
 
     // 数据库配置
-    private static final String JDBC_URL = "jdbc:mysql://110.42.224.57:3309/ronghuiwl?useSSL=false&serverTimezone=UTC";
+    private static final String JDBC_URL = "jdbc:mysql://110.42.224.57:3309/tms?useSSL=false&serverTimezone=UTC";
     private static final String JDBC_USERNAME = "root";
     private static final String JDBC_PASSWORD = "ronghuiwl2025";
 
@@ -28,7 +29,7 @@ public class CodeGenerator {
     private static final String PARENT_PACKAGE = "${package}.${parentArtifactId}";
 
     // 表配置
-    private static final String[] TABLE_NAMES = {"upload_records"}; // 要生成的表
+    private static final String[] TABLE_NAMES = {"truck_fleet_inner"}; // 要生成的表
 //    private static final String[] TABLE_PREFIXES = {"t_", "sys_"}; // 表前缀过滤
 
     public static void main(String[] args) {
@@ -64,6 +65,20 @@ public class CodeGenerator {
                             .enableLombok()
                             .enableChainModel()
                             .enableFileOverride()
+                            .enableSerialAnnotation()
+                            .idType(IdType.ASSIGN_ID)
+                            .addTableFills(new Property("createTime", FieldFill.INSERT))
+                            .addTableFills(new Property("createUserCode", FieldFill.INSERT))
+                            .addTableFills(new Property("createUserName", FieldFill.INSERT))
+                            .addTableFills(new Property("createSiteCode", FieldFill.INSERT))
+                            .addTableFills(new Property("createSiteName", FieldFill.INSERT))
+                            .addTableFills(new Property("modifyTime", FieldFill.INSERT_UPDATE))
+                            .addTableFills(new Property("modifyUserCode", FieldFill.INSERT_UPDATE))
+                            .addTableFills(new Property("modifyUserName", FieldFill.INSERT_UPDATE))
+                            .addTableFills(new Property("modifySiteCode", FieldFill.INSERT_UPDATE))
+                            .addTableFills(new Property("modifySiteName", FieldFill.INSERT_UPDATE))
+                            .versionColumnName("data_version")
+                            .logicDeleteColumnName("data_status")
                             .mapperBuilder()
                             .formatMapperFileName("%sMapper")
                             .mapperTemplate("/templates/mapper.java")
@@ -160,7 +175,7 @@ public class CodeGenerator {
                             .enableFileOverride()
                     ;
                 }).injectionConfig(builder -> {
-                    Map<String,Object> customMap = new HashMap<>();
+                    Map<String, Object> customMap = new HashMap<>();
 //                    customMap.put("abc","1234");
                     builder.customMap(customMap); //注入自定义属性
 //                    builder.customFile(new CustomFile.Builder()
@@ -182,12 +197,12 @@ public class CodeGenerator {
 //                                    .packageName("service.query")
 //                                    .build()
                     builder.customFile(new CustomFile.Builder()
-                                    .fileName("Convert.java")
-                                    .templatePath("/templates/serviceConvert.java.ftl")
-                                    .enableFileOverride()
-                                    .packageName("service.convert")
-                                    .build()
-                            )
+                            .fileName("Convert.java")
+                            .templatePath("/templates/serviceConvert.java.ftl")
+                            .enableFileOverride()
+                            .packageName("service.convert")
+                            .build()
+                    )
                     ;
                 })
                 .templateEngine(new FreemarkerTemplateEngine())
@@ -271,7 +286,7 @@ public class CodeGenerator {
                             .controllerBuilder().disable();
 
                 }).injectionConfig(builder -> {
-                    Map<String,Object> customMap = new HashMap<>();
+                    Map<String, Object> customMap = new HashMap<>();
 //                    customMap.put("abc","1234");
                     builder.customMap(customMap); //注入自定义属性
                     builder.customFile(new CustomFile.Builder()
@@ -281,11 +296,11 @@ public class CodeGenerator {
                                     .packageName("vo") //包名,自3.5.10开始,可通过在package里面获取自定义包全路径,低版本下无法获取,示例:package.entityDTO
                                     .build())
                             .customFile(new CustomFile.Builder()
-                                    .fileName("Request.java")
-                                    .templatePath("/templates/entityRequest.java.ftl")
-                                    .enableFileOverride()
-                                    .packageName("request")
-                                    .build()
+                                            .fileName("Request.java")
+                                            .templatePath("/templates/entityRequest.java.ftl")
+                                            .enableFileOverride()
+                                            .packageName("request")
+                                            .build()
 //                            ).customFile(new CustomFile.Builder()
 //                                    .fileName("Convert.java")
 //                                    .templatePath("/templates/webConvert.java.ftl")

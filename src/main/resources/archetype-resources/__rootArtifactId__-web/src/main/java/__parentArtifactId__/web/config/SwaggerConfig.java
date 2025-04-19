@@ -26,7 +26,7 @@ public class SwaggerConfig {
                         .description("API documentation for Complex Web application"))
                 .servers(List.of(
                         new Server()
-                                .url("http://localhost:9095/${parentArtifactId}/v3/api-docs")
+                                .url("http://localhost:8083/tms")
                                 .description("本地开发环境")
                         ));
     }
@@ -35,7 +35,7 @@ public class SwaggerConfig {
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("${artifactId}") // 模块名称
-                .packagesToScan("${package}.web.controller") // 确保扫描控制器包
+                .packagesToScan("${package}.${parentArtifactId}.web.controller") // 确保扫描控制器包
                 .build();
     }
 }

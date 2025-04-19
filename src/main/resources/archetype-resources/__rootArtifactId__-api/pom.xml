@@ -8,6 +8,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>${artifactId}</artifactId>
+    <name>${artifactId}</name>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

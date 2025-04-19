@@ -1,0 +1,374 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${package}.${parentArtifactId}.dao.mapper.TruckFleetInnerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="${package}.${parentArtifactId}.dao.entity.TruckFleetInner">
+        <id column="id" property="id" />
+        <result column="fleet_name" property="fleetName" />
+        <result column="fleet_code" property="fleetCode" />
+        <result column="fleet_short_name" property="fleetShortName" />
+        <result column="fleet_province_code" property="fleetProvinceCode" />
+        <result column="fleet_province_name" property="fleetProvinceName" />
+        <result column="fleet_city_code" property="fleetCityCode" />
+        <result column="fleet_city_name" property="fleetCityName" />
+        <result column="province_area_code" property="provinceAreaCode" />
+        <result column="province_area_name" property="provinceAreaName" />
+        <result column="effective_status" property="effectiveStatus" />
+        <result column="change_reason" property="changeReason" />
+        <result column="fleet_type" property="fleetType" />
+        <result column="fleet_manager_name" property="fleetManagerName" />
+        <result column="fleet_manager_cellphone" property="fleetManagerCellphone" />
+        <result column="fleet_manager_cellphone_sec" property="fleetManagerCellphoneSec" />
+        <result column="fleet_email" property="fleetEmail" />
+        <result column="unified_social_credit_code" property="unifiedSocialCreditCode" />
+        <result column="outer_inner_tag" property="outerInnerTag" />
+        <result column="bank_association_guid" property="bankAssociationGuid" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user_code" property="createUserCode" />
+        <result column="create_user_name" property="createUserName" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="modify_user_code" property="modifyUserCode" />
+        <result column="modify_user_name" property="modifyUserName" />
+        <result column="create_site_code" property="createSiteCode" />
+        <result column="create_site_name" property="createSiteName" />
+        <result column="modify_site_code" property="modifySiteCode" />
+        <result column="modify_site_name" property="modifySiteName" />
+        <result column="remark" property="remark" />
+        <result column="data_version" property="dataVersion" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="data_status" property="dataStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, fleet_name, fleet_code, fleet_short_name, fleet_province_code, fleet_province_name, fleet_city_code, fleet_city_name, province_area_code, province_area_name, effective_status, change_reason, fleet_type, fleet_manager_name, fleet_manager_cellphone, fleet_manager_cellphone_sec, fleet_email, unified_social_credit_code, outer_inner_tag, bank_association_guid, create_time, create_user_code, create_user_name, modify_time, modify_user_code, modify_user_name, create_site_code, create_site_name, modify_site_code, modify_site_name, remark, data_version, tenant_id, data_status
+    </sql>
+
+
+    <select id="selectBySelective" resultMap="BaseResultMap" parameterType="${package}.${parentArtifactId}.model.request.TruckFleetInnerRequest">
+        SELECT * FROM truck_fleet_inner
+        <trim prefix="where" prefixOverrides="AND">
+            <if test="id != null">
+                AND id = ${symbol_pound}{id}
+            </if>
+            <if test="fleetName != null">
+                AND fleet_name = ${symbol_pound}{fleetName}
+            </if>
+            <if test="fleetCode != null">
+                AND fleet_code = ${symbol_pound}{fleetCode}
+            </if>
+            <if test="fleetShortName != null">
+                AND fleet_short_name = ${symbol_pound}{fleetShortName}
+            </if>
+            <if test="fleetProvinceCode != null">
+                AND fleet_province_code = ${symbol_pound}{fleetProvinceCode}
+            </if>
+            <if test="fleetProvinceName != null">
+                AND fleet_province_name = ${symbol_pound}{fleetProvinceName}
+            </if>
+            <if test="fleetCityCode != null">
+                AND fleet_city_code = ${symbol_pound}{fleetCityCode}
+            </if>
+            <if test="fleetCityName != null">
+                AND fleet_city_name = ${symbol_pound}{fleetCityName}
+            </if>
+            <if test="provinceAreaCode != null">
+                AND province_area_code = ${symbol_pound}{provinceAreaCode}
+            </if>
+            <if test="provinceAreaName != null">
+                AND province_area_name = ${symbol_pound}{provinceAreaName}
+            </if>
+            <if test="effectiveStatus != null">
+                AND effective_status = ${symbol_pound}{effectiveStatus}
+            </if>
+            <if test="changeReason != null">
+                AND change_reason = ${symbol_pound}{changeReason}
+            </if>
+            <if test="fleetType != null">
+                AND fleet_type = ${symbol_pound}{fleetType}
+            </if>
+            <if test="fleetManagerName != null">
+                AND fleet_manager_name = ${symbol_pound}{fleetManagerName}
+            </if>
+            <if test="fleetManagerCellphone != null">
+                AND fleet_manager_cellphone = ${symbol_pound}{fleetManagerCellphone}
+            </if>
+            <if test="fleetManagerCellphoneSec != null">
+                AND fleet_manager_cellphone_sec = ${symbol_pound}{fleetManagerCellphoneSec}
+            </if>
+            <if test="fleetEmail != null">
+                AND fleet_email = ${symbol_pound}{fleetEmail}
+            </if>
+            <if test="unifiedSocialCreditCode != null">
+                AND unified_social_credit_code = ${symbol_pound}{unifiedSocialCreditCode}
+            </if>
+            <if test="outerInnerTag != null">
+                AND outer_inner_tag = ${symbol_pound}{outerInnerTag}
+            </if>
+            <if test="bankAssociationGuid != null">
+                AND bank_association_guid = ${symbol_pound}{bankAssociationGuid}
+            </if>
+            <if test="createTime != null">
+                AND create_time = ${symbol_pound}{createTime}
+            </if>
+            <if test="createUserCode != null">
+                AND create_user_code = ${symbol_pound}{createUserCode}
+            </if>
+            <if test="createUserName != null">
+                AND create_user_name = ${symbol_pound}{createUserName}
+            </if>
+            <if test="modifyTime != null">
+                AND modify_time = ${symbol_pound}{modifyTime}
+            </if>
+            <if test="modifyUserCode != null">
+                AND modify_user_code = ${symbol_pound}{modifyUserCode}
+            </if>
+            <if test="modifyUserName != null">
+                AND modify_user_name = ${symbol_pound}{modifyUserName}
+            </if>
+            <if test="createSiteCode != null">
+                AND create_site_code = ${symbol_pound}{createSiteCode}
+            </if>
+            <if test="createSiteName != null">
+                AND create_site_name = ${symbol_pound}{createSiteName}
+            </if>
+            <if test="modifySiteCode != null">
+                AND modify_site_code = ${symbol_pound}{modifySiteCode}
+            </if>
+            <if test="modifySiteName != null">
+                AND modify_site_name = ${symbol_pound}{modifySiteName}
+            </if>
+            <if test="remark != null">
+                AND remark = ${symbol_pound}{remark}
+            </if>
+            <if test="dataVersion != null">
+                AND data_version = ${symbol_pound}{dataVersion}
+            </if>
+            <if test="tenantId != null">
+                AND tenant_id = ${symbol_pound}{tenantId}
+            </if>
+            <if test="dataStatus != null">
+                AND data_status = ${symbol_pound}{dataStatus}
+            </if>
+        </trim>
+    </select>
+
+    <select id="selectUsePage" resultMap="BaseResultMap" parameterType="${package}.${parentArtifactId}.model.request.TruckFleetInnerRequest">
+        SELECT * FROM truck_fleet_inner
+        <trim prefix="where" prefixOverrides="AND">
+            <if test="request.id != null">
+                AND id = ${symbol_pound}{request.id}
+            </if>
+            <if test="request.fleetName != null">
+                AND fleet_name = ${symbol_pound}{request.fleetName}
+            </if>
+            <if test="request.fleetCode != null">
+                AND fleet_code = ${symbol_pound}{request.fleetCode}
+            </if>
+            <if test="request.fleetShortName != null">
+                AND fleet_short_name = ${symbol_pound}{request.fleetShortName}
+            </if>
+            <if test="request.fleetProvinceCode != null">
+                AND fleet_province_code = ${symbol_pound}{request.fleetProvinceCode}
+            </if>
+            <if test="request.fleetProvinceName != null">
+                AND fleet_province_name = ${symbol_pound}{request.fleetProvinceName}
+            </if>
+            <if test="request.fleetCityCode != null">
+                AND fleet_city_code = ${symbol_pound}{request.fleetCityCode}
+            </if>
+            <if test="request.fleetCityName != null">
+                AND fleet_city_name = ${symbol_pound}{request.fleetCityName}
+            </if>
+            <if test="request.provinceAreaCode != null">
+                AND province_area_code = ${symbol_pound}{request.provinceAreaCode}
+            </if>
+            <if test="request.provinceAreaName != null">
+                AND province_area_name = ${symbol_pound}{request.provinceAreaName}
+            </if>
+            <if test="request.effectiveStatus != null">
+                AND effective_status = ${symbol_pound}{request.effectiveStatus}
+            </if>
+            <if test="request.changeReason != null">
+                AND change_reason = ${symbol_pound}{request.changeReason}
+            </if>
+            <if test="request.fleetType != null">
+                AND fleet_type = ${symbol_pound}{request.fleetType}
+            </if>
+            <if test="request.fleetManagerName != null">
+                AND fleet_manager_name = ${symbol_pound}{request.fleetManagerName}
+            </if>
+            <if test="request.fleetManagerCellphone != null">
+                AND fleet_manager_cellphone = ${symbol_pound}{request.fleetManagerCellphone}
+            </if>
+            <if test="request.fleetManagerCellphoneSec != null">
+                AND fleet_manager_cellphone_sec = ${symbol_pound}{request.fleetManagerCellphoneSec}
+            </if>
+            <if test="request.fleetEmail != null">
+                AND fleet_email = ${symbol_pound}{request.fleetEmail}
+            </if>
+            <if test="request.unifiedSocialCreditCode != null">
+                AND unified_social_credit_code = ${symbol_pound}{request.unifiedSocialCreditCode}
+            </if>
+            <if test="request.outerInnerTag != null">
+                AND outer_inner_tag = ${symbol_pound}{request.outerInnerTag}
+            </if>
+            <if test="request.bankAssociationGuid != null">
+                AND bank_association_guid = ${symbol_pound}{request.bankAssociationGuid}
+            </if>
+            <if test="request.createTime != null">
+                AND create_time = ${symbol_pound}{request.createTime}
+            </if>
+            <if test="request.createUserCode != null">
+                AND create_user_code = ${symbol_pound}{request.createUserCode}
+            </if>
+            <if test="request.createUserName != null">
+                AND create_user_name = ${symbol_pound}{request.createUserName}
+            </if>
+            <if test="request.modifyTime != null">
+                AND modify_time = ${symbol_pound}{request.modifyTime}
+            </if>
+            <if test="request.modifyUserCode != null">
+                AND modify_user_code = ${symbol_pound}{request.modifyUserCode}
+            </if>
+            <if test="request.modifyUserName != null">
+                AND modify_user_name = ${symbol_pound}{request.modifyUserName}
+            </if>
+            <if test="request.createSiteCode != null">
+                AND create_site_code = ${symbol_pound}{request.createSiteCode}
+            </if>
+            <if test="request.createSiteName != null">
+                AND create_site_name = ${symbol_pound}{request.createSiteName}
+            </if>
+            <if test="request.modifySiteCode != null">
+                AND modify_site_code = ${symbol_pound}{request.modifySiteCode}
+            </if>
+            <if test="request.modifySiteName != null">
+                AND modify_site_name = ${symbol_pound}{request.modifySiteName}
+            </if>
+            <if test="request.remark != null">
+                AND remark = ${symbol_pound}{request.remark}
+            </if>
+            <if test="request.dataVersion != null">
+                AND data_version = ${symbol_pound}{request.dataVersion}
+            </if>
+            <if test="request.tenantId != null">
+                AND tenant_id = ${symbol_pound}{request.tenantId}
+            </if>
+            <if test="request.dataStatus != null">
+                AND data_status = ${symbol_pound}{request.dataStatus}
+            </if>
+        </trim>
+    </select>
+
+    <update id="updateByIdSelective" parameterType="${package}.${parentArtifactId}.model.request.TruckFleetInnerRequest">
+        UPDATE truck_fleet_inner
+        <trim prefix="set" suffixOverrides=",">
+                <if test="fleetName != null">
+                    fleet_name = ${symbol_pound}{fleetName},
+                </if>
+                <if test="fleetCode != null">
+                    fleet_code = ${symbol_pound}{fleetCode},
+                </if>
+                <if test="fleetShortName != null">
+                    fleet_short_name = ${symbol_pound}{fleetShortName},
+                </if>
+                <if test="fleetProvinceCode != null">
+                    fleet_province_code = ${symbol_pound}{fleetProvinceCode},
+                </if>
+                <if test="fleetProvinceName != null">
+                    fleet_province_name = ${symbol_pound}{fleetProvinceName},
+                </if>
+                <if test="fleetCityCode != null">
+                    fleet_city_code = ${symbol_pound}{fleetCityCode},
+                </if>
+                <if test="fleetCityName != null">
+                    fleet_city_name = ${symbol_pound}{fleetCityName},
+                </if>
+                <if test="provinceAreaCode != null">
+                    province_area_code = ${symbol_pound}{provinceAreaCode},
+                </if>
+                <if test="provinceAreaName != null">
+                    province_area_name = ${symbol_pound}{provinceAreaName},
+                </if>
+                <if test="effectiveStatus != null">
+                    effective_status = ${symbol_pound}{effectiveStatus},
+                </if>
+                <if test="changeReason != null">
+                    change_reason = ${symbol_pound}{changeReason},
+                </if>
+                <if test="fleetType != null">
+                    fleet_type = ${symbol_pound}{fleetType},
+                </if>
+                <if test="fleetManagerName != null">
+                    fleet_manager_name = ${symbol_pound}{fleetManagerName},
+                </if>
+                <if test="fleetManagerCellphone != null">
+                    fleet_manager_cellphone = ${symbol_pound}{fleetManagerCellphone},
+                </if>
+                <if test="fleetManagerCellphoneSec != null">
+                    fleet_manager_cellphone_sec = ${symbol_pound}{fleetManagerCellphoneSec},
+                </if>
+                <if test="fleetEmail != null">
+                    fleet_email = ${symbol_pound}{fleetEmail},
+                </if>
+                <if test="unifiedSocialCreditCode != null">
+                    unified_social_credit_code = ${symbol_pound}{unifiedSocialCreditCode},
+                </if>
+                <if test="outerInnerTag != null">
+                    outer_inner_tag = ${symbol_pound}{outerInnerTag},
+                </if>
+                <if test="bankAssociationGuid != null">
+                    bank_association_guid = ${symbol_pound}{bankAssociationGuid},
+                </if>
+                <if test="createTime != null">
+                    create_time = ${symbol_pound}{createTime},
+                </if>
+                <if test="createUserCode != null">
+                    create_user_code = ${symbol_pound}{createUserCode},
+                </if>
+                <if test="createUserName != null">
+                    create_user_name = ${symbol_pound}{createUserName},
+                </if>
+                <if test="modifyTime != null">
+                    modify_time = ${symbol_pound}{modifyTime},
+                </if>
+                <if test="modifyUserCode != null">
+                    modify_user_code = ${symbol_pound}{modifyUserCode},
+                </if>
+                <if test="modifyUserName != null">
+                    modify_user_name = ${symbol_pound}{modifyUserName},
+                </if>
+                <if test="createSiteCode != null">
+                    create_site_code = ${symbol_pound}{createSiteCode},
+                </if>
+                <if test="createSiteName != null">
+                    create_site_name = ${symbol_pound}{createSiteName},
+                </if>
+                <if test="modifySiteCode != null">
+                    modify_site_code = ${symbol_pound}{modifySiteCode},
+                </if>
+                <if test="modifySiteName != null">
+                    modify_site_name = ${symbol_pound}{modifySiteName},
+                </if>
+                <if test="remark != null">
+                    remark = ${symbol_pound}{remark},
+                </if>
+                <if test="dataVersion != null">
+                    data_version = ${symbol_pound}{dataVersion},
+                </if>
+                <if test="tenantId != null">
+                    tenant_id = ${symbol_pound}{tenantId},
+                </if>
+                <if test="dataStatus != null">
+                    data_status = ${symbol_pound}{dataStatus},
+                </if>
+        </trim>
+        WHERE
+                id = ${symbol_pound}{id}
+    </update>
+</mapper>

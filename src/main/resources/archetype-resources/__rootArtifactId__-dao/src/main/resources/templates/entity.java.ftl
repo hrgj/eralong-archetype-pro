@@ -14,7 +14,6 @@ import ${pkg};
  *
  * @author ${author}
  * @since ${date}
- * @since ${date}
  */
 <#list entityClassAnnotations as an>
 ${an.displayName}

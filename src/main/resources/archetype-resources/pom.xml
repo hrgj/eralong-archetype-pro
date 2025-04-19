@@ -19,6 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2023.0.2</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>
+        <ronghuiwl-mybatis-plus-version>0.0.2-SNAPSHOT</ronghuiwl-mybatis-plus-version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -105,16 +106,6 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-                <version>3.5.10.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-jsqlparser</artifactId>
-                <version>3.5.10.1</version>
-            </dependency>
-            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-bootstrap</artifactId>
                 <version>4.2.0</version>
@@ -142,6 +133,11 @@
             <dependency>
                 <groupId>com.ronghuiwl</groupId>
                 <artifactId>ronghuiwl-base</artifactId>
+                <version>0.0.2-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ronghuiwl</groupId>
+                <artifactId>ronghuiwl-common</artifactId>
                 <version>0.0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -187,19 +183,11 @@
             </dependency>
             <!--    log4j        -->
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>2.0.16</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-slf4j-impl</artifactId>
-                <version>2.23.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>2.23.0</version>
+                <artifactId>log4j-bom</artifactId>
+                <version>2.24.3</version><!-- spring-boot关联版本为2.21.1，使用更新的2.24.3以的到更好的日志输出 -->
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>com.lmax</groupId>
@@ -215,6 +203,11 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>2.3.31</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ronghuiwl</groupId>
+                <artifactId>ronghuiwl-mybatis-plus</artifactId>
+                <version>${ronghuiwl-mybatis-plus-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -261,6 +254,22 @@
                         <target>17</target>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <classpathPrefix>lib/</classpathPrefix>
+                                <mainClass>com.example.MainClass</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
